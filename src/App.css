@@ -1,0 +1,16 @@
+/* Define the marquee animation */
+@keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  
+  /* Apply the animation to the marquee */
+  .marquee {
+    animation: marquee 15s linear infinite;
+  }
+  
+
+  .dark-3d-gradient {
+    background: linear-gradient(to bottom right, #1a1a1a, #0d0d0d);
+  }
+  
