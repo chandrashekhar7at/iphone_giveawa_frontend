@@ -20,6 +20,7 @@ import UserBoxes7 from './pages/UserBoxes7';
 import UserBoxes8 from './pages/UserBoxes8';
 import UserBoxes9 from './pages/UserBoxes9';
 import UserBoxes10 from './pages/UserBoxes10';
+import UserBoxes66 from './pages/UserBoxes66';
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
             <Route path='/userboxes3' element={<UserBoxes3 />} />
             <Route path='/userboxes4' element={<UserBoxes4 />} />
             <Route path='/userboxes5' element={<UserBoxes5 />} />
+            <Route path='/userboxes66' element={<UserBoxes66 />} />
             <Route path='/userboxes7' element={<UserBoxes7 />} />
             <Route path='/userboxes8' element={<UserBoxes8 />} />
             <Route path='/userboxes9' element={<UserBoxes9 />} />

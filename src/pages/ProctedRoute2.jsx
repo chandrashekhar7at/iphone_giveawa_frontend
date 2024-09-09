@@ -8,7 +8,7 @@ const ProtectedRoute2 = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const result = await axios.post('/api/checkUserAuth', null,{
+        const result = await axios.get('/api/checkUserAuth', null,{
           withCredentials:true
         });
         if(result.data.status){

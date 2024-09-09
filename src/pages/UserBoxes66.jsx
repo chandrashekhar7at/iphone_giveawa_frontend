@@ -7,7 +7,7 @@ import { FaGift, FaStar } from 'react-icons/fa6';
 import { BsBalloonHeart } from 'react-icons/bs';
 import { setAlert, setAlertStatus } from '../redux/features/AuthSlices'; 
 
-const UserBoxes6 = () => {
+const UserBoxes66 = () => {
   const [formData, setFormData] = useState({
     fullname: '',
     instaId: '',
@@ -248,4 +248,4 @@ const UserBoxes6 = () => {
   );
 };
 
-export default UserBoxes6;
+export default UserBoxes66;
