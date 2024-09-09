@@ -16,11 +16,11 @@ import UserBoxes3 from './pages/UserBoxes3';
 import UserBoxes4 from './pages/UserBoxes4';
 import UserBoxes5 from './pages/UserBoxes5';
 import ProtectedRoutePayment from './pages/ProtectedRoutePayment';
-import UserBoxes6 from './pages/Userboxes6';
 import UserBoxes7 from './pages/UserBoxes7';
 import UserBoxes8 from './pages/UserBoxes8';
 import UserBoxes9 from './pages/UserBoxes9';
 import UserBoxes10 from './pages/UserBoxes10';
+import UserBoxes6 from './pages/Userboxes6';
 
 const App = () => {
   return (
