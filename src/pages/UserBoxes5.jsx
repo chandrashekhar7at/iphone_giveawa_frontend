@@ -33,7 +33,7 @@ const UserBoxes5 = () => {
   useEffect(() => {
     const getUtr = async () => {
       try {
-        const result = await axios.post('/api/getAllUtrValues');
+        const result = await axios.post('https://iphonegiveaway-sjph.onrender.com/api/getAllUtrValues');
         if (result.data.utrValues) {
           setUtrValues(result.data.utrValues.map(item => item.utr));
         }
@@ -47,7 +47,7 @@ const UserBoxes5 = () => {
     if (info) {
       const getUtrById = async () => {
         try {
-          const result = await axios.post(`/api/getUtrValuesbyid/${info}`);
+          const result = await axios.post(`https://iphonegiveaway-sjph.onrender.com/api/getUtrValuesbyid/${info}`);
           if (result.data) {
             setUtrValuesById(result.data.utrValues);
           }

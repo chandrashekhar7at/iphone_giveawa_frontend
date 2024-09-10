@@ -8,9 +8,10 @@ const ProtectedRoute = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const result = await axios.get('/api/checkUserAuth', null,{
+        const result = await axios.get('https://iphonegiveaway-sjph.onrender.com/api/checkUserAuth',{
           withCredentials:true
         });
+        console.log(result)
         if(result.data.status){
           setIsAuthenticated(result.data.status)
           return

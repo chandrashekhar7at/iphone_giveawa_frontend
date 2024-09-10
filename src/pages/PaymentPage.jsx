@@ -44,7 +44,7 @@ const PaymentPage = () => {
             return;
         }
         try {
-            const result = await axios.post(`/api/saveuserinfo/${usersaveddata.id}`, {
+            const result = await axios.post(`https://iphonegiveaway-sjph.onrender.com/api/saveuserinfo/${usersaveddata.id}`, {
                 formData: {
                     fullname: userdata.fullname,
                     email: userdata.email,

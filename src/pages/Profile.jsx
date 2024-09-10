@@ -13,7 +13,7 @@ const Profile = () => {
     if (info) {
       const getUtrById = async () => {
         try {
-          const result = await axios.post(`/api/getUtrValuesbyid/${info}`);
+          const result = await axios.post(`https://iphonegiveaway-sjph.onrender.com/api/getUtrValuesbyid/${info}`);
           if (result.data) {
             setUtrValues(result.data.utrValues); // Store UTR values for ID
           }

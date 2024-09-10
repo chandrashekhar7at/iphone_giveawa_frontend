@@ -21,7 +21,10 @@ const Signin = () => {
     setSuccess('');
 
     try {
-      const response = await axios.post('/api/signin', { phone, password });
+      const response = await axios.post('https://iphonegiveaway-sjph.onrender.com/api/signin', { phone, password },{
+        withCredentials:true,
+        credentials: 'include'
+      });
       if (response.data.status) {
         dispatch(infoid(response.data.data.userinfoid))
         dispatch(userid(response.data.data._id))

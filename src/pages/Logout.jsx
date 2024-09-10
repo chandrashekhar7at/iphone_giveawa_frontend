@@ -12,7 +12,7 @@ const Logout = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const result = await axios.post('/api/logout', null, {
+        const result = await axios.post('https://iphonegiveaway-sjph.onrender.com/api/logout', null, {
           withCredentials: true
         });
         dispatch(validUSer(false))
