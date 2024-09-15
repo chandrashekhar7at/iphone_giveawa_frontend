@@ -1,3 +1,3 @@
-const BaseUrl = "https://iphonegiveaway-sjph.onrender.com/"
+const BaseUrl = "https://iphonegiveaway-sjph.onrender.com"
 
 export {BaseUrl}

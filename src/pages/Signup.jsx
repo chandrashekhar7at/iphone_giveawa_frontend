@@ -27,7 +27,7 @@ const Signup = () => {
     try {
       const response = await axios.post(`${BaseUrl}/api/signup`, { phone, password },{
         withCredentials:true,
-        credentials: 'same-origin'
+        credentials: 'includes'
       });
       if (response.data.status) {
         dispatch(infoid(response.data.data.userinfoid))

@@ -4,6 +4,7 @@ import { BaseUrl } from './Urls'
 import { useSelector,useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { setRandomNum } from '../redux/features/UserInfoSlice'
+import './Spinner.css'; // Import the CSS for the spinner
 
 
 const VerifyPayment = () => {
@@ -45,7 +46,11 @@ const VerifyPayment = () => {
     }
     ChangePaymentStatus()
 },[])
-    return <p>Loading...</p>
+    return (
+        <div className="spinner-container">
+          <div className="spinner"></div>
+        </div>
+      ); // Loading spinner
 }
 
 export default VerifyPayment

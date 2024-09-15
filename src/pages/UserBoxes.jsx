@@ -106,12 +106,12 @@ const UserBoxes = () => {
     dispatch(setBoxNo(boxnumber));
     
     setFormOpenStatus(!formOpenStatus);
-    navigate('/verifypayment');
+    window.location.href = 'https://superprofile.bio/vp/66e6a803166e4000134b4fa5';
   };
 
 
   return (
-    <div className='border-2 border-red-600 bg-dark-blue flex items-center flex-col min-h-screen overflow-auto'>
+    <div className='bg-dark-blue flex items-center flex-col min-h-screen overflow-auto'>
       <p className='text-green-900 px-5 text-xl font-bold py-3 w-full bg-yellow-400'>GIVEAWAY {(boxstart+100)/100}</p>
       <div className='w-96 p-5 flex flex-col text-yellow-400'>
         <li className='p-2'>Book any white slot</li>
