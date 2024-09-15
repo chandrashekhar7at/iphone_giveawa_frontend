@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Outlet, Navigate } from 'react-router-dom';
+import './Spinner.css'; // Import the CSS for the spinner
+import { BaseUrl } from './Urls';
 
 const ProtectedRoute2 = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -8,16 +10,16 @@ const ProtectedRoute2 = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const result = await axios.get('https://iphonegiveaway-sjph.onrender.com/api/checkUserAuth',{
-          withCredentials:true
+        const result = await axios.get(`${BaseUrl}/api/checkUserAuth`, {
+          withCredentials: true
         });
-        if(result.data.status){
-          setIsAuthenticated(result.data.status)
-          return
+        if (result.data.status) {
+          setIsAuthenticated(result.data.status);
+          return;
         }
-        setIsAuthenticated(result.data.status); // Assuming `result.data.status` is a boolean
-      } catch (error) {
         setIsAuthenticated(result.data.status);
+      } catch (error) {
+        setIsAuthenticated(false);
       }
     };
 
@@ -25,10 +27,14 @@ const ProtectedRoute2 = () => {
   }, []);
 
   if (isAuthenticated === null) {
-    return <div>Loading...</div>; // Optional: Loading state
+    return (
+      <div className="spinner-container">
+        <div className="spinner"></div>
+      </div>
+    ); // Loading spinner
   }
 
-  return isAuthenticated ? <Navigate to="/dashboard" /> : <Outlet/>;
+  return isAuthenticated ? <Navigate to="/dashboard" /> : <Outlet />;
 };
 
 export default ProtectedRoute2;

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { infoid,setAlert, setAlertStatus, setpaymentStatus } from '../redux/features/AuthSlices';
+import { BaseUrl } from './Urls';
 
 const PaymentPage = () => {
     const [utr, setUtr] = useState('');
@@ -44,7 +45,7 @@ const PaymentPage = () => {
             return;
         }
         try {
-            const result = await axios.post(`https://iphonegiveaway-sjph.onrender.com/api/saveuserinfo/${usersaveddata.id}`, {
+            const result = await axios.post(`${BaseUrl}/api/saveuserinfo/${usersaveddata.id}`, {
                 formData: {
                     fullname: userdata.fullname,
                     email: userdata.email,
@@ -56,6 +57,12 @@ const PaymentPage = () => {
                 id: usersaveddata.id
             });
             if (result.status === 200) {
+                try {
+                    const infoid = result.data.user._id
+                    const innerresult = await axios.post(`${BaseUrl}/api/updateinfoid/${usersaveddata.id}`,{infoid})
+                } catch (error) {
+                    setError('something wrong')
+                }
                 dispatch(infoid(result.data.user._id))
                 setError('');
                 setUtr(''); // Clear the input field

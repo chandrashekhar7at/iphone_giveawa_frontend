@@ -66,9 +66,12 @@ const Dashboard = () => {
             <div className='flex items-center gap-4'>
               {/* Render icon for the current item */}
               {icons[index]}
-              <Link to={index === 5 ? '/userboxes66' : `/userboxes${index + 1}`} onClick={(e) => e.stopPropagation()}>
+              <Link to={`/userboxes?id=${index + 1}&start=${index*100}`} onClick={(e) => e.stopPropagation()}>
                 <li className='text-xl font-semibold'>{`Giveaway ${index + 1}`}</li>
               </Link>
+              {/* <Link to={index === 5 ? '/userboxes66' : `/userboxes${index + 1}`} onClick={(e) => e.stopPropagation()}>
+                <li className='text-xl font-semibold'>{`Giveaway ${index + 1}`}</li>
+              </Link> */}
             </div>
           </motion.div>
         ))}

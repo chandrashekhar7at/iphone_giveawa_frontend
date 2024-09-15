@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'; // Import useDispatch if you're using
 import { BsStars } from "react-icons/bs";
 import { WiStars } from "react-icons/wi";
 import { validUSer,userid, infoid } from '../redux/features/AuthSlices';
+import { BaseUrl } from './Urls';
 
 const Signin = () => {
   const [phone, setPhone] = useState('');
@@ -21,9 +22,9 @@ const Signin = () => {
     setSuccess('');
 
     try {
-      const response = await axios.post('https://iphonegiveaway-sjph.onrender.com/api/signin', { phone, password },{
+      const response = await axios.post(`${BaseUrl}/api/signin`, { phone, password },{
         withCredentials:true,
-        credentials: 'include'
+        credentials: 'same-origin'
       });
       if (response.data.status) {
         dispatch(infoid(response.data.data.userinfoid))

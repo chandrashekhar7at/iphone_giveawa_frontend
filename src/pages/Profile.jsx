@@ -3,29 +3,33 @@ import { Link } from 'react-router-dom'
 import { FaUser } from "react-icons/fa6";
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import { BaseUrl } from './Urls';
 
 const Profile = () => {
   const data = useSelector((state) => state.authuser);
-  const info = data.infoid; // Use `info` instead of `infoid` directly
-  const [utrValues, setUtrValues] = useState([]);
+  const userid = data.id; // Use `info` instead of `infoid` directly
+  const [storecurrentbox,setCurrentBox] = useState([])
 
   useEffect(() => {
-    if (info) {
-      const getUtrById = async () => {
+    if (userid) {
+      const getvalueById = async () => {
         try {
-          const result = await axios.post(`https://iphonegiveaway-sjph.onrender.com/api/getUtrValuesbyid/${info}`);
-          if (result.data) {
-            setUtrValues(result.data.utrValues); // Store UTR values for ID
+          const result = await axios.post(`${BaseUrl}/api/fetchuserbyid/${userid}`);
+          if (result.data.status) {
+            let storeinarray = []
+            result.data.fetcheddata.userinfoids.map(item=>{
+              storeinarray.push(item.boxno)
+            }) 
+            setCurrentBox(storeinarray)
           }
         } catch (error) {
+          console.log(error)
         }
       };
-      getUtrById();
+      getvalueById();
     }
-  }, [info]);
+  }, [userid]);
 
-  // Filter UTR values that are less than 10 digits
-  const filteredUtrValues = utrValues.filter(utr => utr.length < 10);
 
   return (
     <div className='flex flex-col mt-10 items-center'>
@@ -34,17 +38,15 @@ const Profile = () => {
         <p className='text-lg'>Total Slot Booked</p>
         {/* Display filtered UTR values (less than 10 digits) */}
         <div className="mt-4">
-          {filteredUtrValues.length > 0 ? (
             <ul className='flex flex-wrap gap-5 justify-center items-center'>
-              {filteredUtrValues.map((utr, index) => (
-                <li key={index} className="text-white bg-green-800 p-3 rounded-full w-14 h-14">
-                  {utr}
-                </li>
-              ))}
+              {
+                storecurrentbox.map((item,index)=>(
+                  <li key={index} className="text-white bg-green-800 p-3 rounded-full w-14 h-14">
+                    {item}
+                  </li>
+                ))
+              }
             </ul>
-          ) : (
-            <p className='mb-80'>No slot booked.</p>
-          )}
         </div>
       </div>
       <Link to="/logout" className='mb-80 px-20 py-3 text-lg text-white shadow-lg rounded-xl mt-8 bg-cyan-800'>Logout</Link>

@@ -2,22 +2,28 @@ import React, { useEffect, useState } from 'react';
 import { GiTargetPrize } from 'react-icons/gi';
 import { FaUserLarge } from 'react-icons/fa6';
 import { Link, useNavigate } from 'react-router-dom';
-import { setAlertStatus,setAlert, validUSer, setpaymentStatus } from '../redux/features/AuthSlices';
-import { useDispatch,useSelector } from 'react-redux';
-import { ImCross } from "react-icons/im";
-
+import { useDispatch, useSelector } from 'react-redux';
 
 const Header = () => {
   const navigate = useNavigate();
-  const data = useSelector((state) => state.authuser)
-  const dispatch = useDispatch()
-  const activeUser = data.user
-  const handleAlert = ()=>{
-    dispatch(setAlert(''));
-    dispatch(setpaymentStatus(false))
-    dispatch(setAlertStatus(false))
-}
-  
+  const data = useSelector((state) => state.authuser);
+  const dispatch = useDispatch();
+  const activeUser = data.user;
+
+  const northIndianFirstNames = [
+    'Rahul', 'Ankit', 'Rohit', 'Vikram', 'Sandeep', 'Pooja', 'Anjali', 'Neha', 'Priya', 'Ritu'
+  ];
+
+  const [currentNameIndex, setCurrentNameIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentNameIndex((prevIndex) => (prevIndex + 1) % northIndianFirstNames.length);
+    }, 1000); // Change name every 5 seconds
+
+    return () => clearInterval(interval); // Clear interval on component unmount
+  }, [northIndianFirstNames.length]);
+
   return (
     <>
       <nav className='flex p-5 shadow-sm bg-blue-950 sticky top-0 z-20'>
@@ -30,12 +36,12 @@ const Header = () => {
             <FaUserLarge className='border rounded-full h-10 w-10 text-gray-400 border-gray-400' />
           </div>
         )}
-    
       </nav>
+      
       <div className="overflow-hidden relative w-full bg-blue-950 text-white">
         <div className="marquee flex gap-8 justify-center items-center text-lg font-bold whitespace-nowrap">
           <span className="transform-gpu rotate-x-6 skew-y-3">
-            Users Already Won the iPhone
+            <span className='text-orange-700 text-lg'> {northIndianFirstNames[currentNameIndex]} </span> already won the iPhone!
           </span>
           <img src="iphonefront.jpg" alt="iPhone" className="w-10 h-10 transform-gpu rotate-x-6 skew-y-3" />
           <span className="transform-gpu rotate-x-6 skew-y-3">

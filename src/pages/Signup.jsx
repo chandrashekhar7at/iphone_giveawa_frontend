@@ -6,6 +6,7 @@ import { WiStars } from "react-icons/wi";
 import { validUSer,userid,infoid } from '../redux/features/AuthSlices';
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
+import { BaseUrl } from './Urls';
 
 const Signup = () => {
   const [phone, setPhone] = useState('');
@@ -24,11 +25,10 @@ const Signup = () => {
     setSuccess('');
 
     try {
-      const response = await axios.post('https://iphonegiveaway-sjph.onrender.com/api/signup', { phone, password },{
+      const response = await axios.post(`${BaseUrl}/api/signup`, { phone, password },{
         withCredentials:true,
-        credentials: 'include'
+        credentials: 'same-origin'
       });
-      console.log(response)
       if (response.data.status) {
         dispatch(infoid(response.data.data.userinfoid))
         dispatch(userid(response.data.data._id))

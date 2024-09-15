@@ -3,6 +3,9 @@ import axios from 'axios'; // Import axios
 import { Navigate } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
 import { infoid, setAlertStatus, userid, validUSer } from '../redux/features/AuthSlices';
+import { BaseUrl } from './Urls';
+import './Spinner.css'; // Import the CSS for the spinner
+
 
 const Logout = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null); // Initialize with null for loading state
@@ -12,7 +15,7 @@ const Logout = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const result = await axios.post('https://iphonegiveaway-sjph.onrender.com/api/logout', null, {
+        const result = await axios.post(`${BaseUrl}/api/logout`, null, {
           withCredentials: true
         });
         dispatch(validUSer(false))
@@ -29,7 +32,9 @@ const Logout = () => {
   }, []);
 
   if (isAuthenticated === null) {
-    return <div>Loading...</div>; // Loading state
+    return (<div className="spinner-container">
+        <div className="spinner"></div>
+    </div>)
   }
 
   return isAuthenticated ? <Navigate to="/signin" /> : <Navigate to="/profile" />;
